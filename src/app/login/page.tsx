@@ -1,10 +1,6 @@
 import { SignIn } from "@clerk/nextjs";
 
-interface LoginProps {
-  searchParams: Record<string, string | undefined>;
-}
-
-export default function Login({ searchParams }: LoginProps) {
+export default async function Login({ searchParams }: { searchParams: { redirectUrl?: string } }) {
   const redirectUrl = searchParams?.redirectUrl ?? "/";
 
   return (
