@@ -1,11 +1,11 @@
 import { SignIn } from "@clerk/nextjs";
 
 interface LoginPageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export default async function Login({ searchParams }: LoginPageProps) {
-  const redirectUrl = typeof searchParams.redirectUrl === 'string' ? searchParams.redirectUrl : "/";
+export default function Login({ searchParams }: LoginPageProps) {
+  const redirectUrl = typeof searchParams?.redirectUrl === 'string' ? searchParams.redirectUrl : "/";
 
   return (
     <section className="mt-14">
