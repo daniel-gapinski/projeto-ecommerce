@@ -2,6 +2,7 @@ import { ProductProps } from "@/app/types/types";
 import { getStripe } from "@/lib/stripe";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "../../../lib/prisma";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     const { userId } = await auth();
@@ -70,7 +71,7 @@ export async function POST(req: Request) {
             if(!existing_order) {
                 return new Response("Order not found", { status: 404});
             }
-            return Response.json({ paymentIntent: updated_intent }, {status: 200});
+            return NextResponse.json({ paymentIntent: updated_intent }, {status: 200});
         };
 
     }else {
@@ -86,7 +87,7 @@ export async function POST(req: Request) {
             data: orderData,
         });
 
-        return Response.json({ paymentIntent }, { status: 200 });
+        return NextResponse.json({ paymentIntent }, { status: 200 });
     }
 
     console.log(" userID: ", userId)

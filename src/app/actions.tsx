@@ -5,7 +5,7 @@ import { ProductProps } from "./types/types";
 export async function fetchProducts(): Promise<ProductProps[]> {
 
     const stripe = getStripe();
-    
+
     const products = await stripe.products.list();
 
     const formatedProducts = await Promise.all(
@@ -27,7 +27,7 @@ export async function fetchProducts(): Promise<ProductProps[]> {
     return formatedProducts;
 }
 
-export async function fetchProduct( id:string ) {
+export async function fetchProduct(id: string) {
 
     const stripe = getStripe();
 
@@ -41,7 +41,7 @@ export async function fetchProduct( id:string ) {
         price: price.data[0].unit_amount,
         name: product.name,
         image: product.images[0],
-        description: product.description, 
+        description: product.description,
         //currency: produto.data[0].currency,
 
     }
