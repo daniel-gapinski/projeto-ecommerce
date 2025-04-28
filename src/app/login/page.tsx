@@ -4,7 +4,7 @@ interface LoginPageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default function Login({ searchParams }: LoginPageProps) {
+export default async function Login({ searchParams }: LoginPageProps) {
   const redirectUrl = typeof searchParams.redirectUrl === 'string' ? searchParams.redirectUrl : "/";
 
   return (
