@@ -1,7 +1,5 @@
-import dynamic from "next/dynamic";
+import LoginClient from "../components/LoginClient";
 import { Suspense } from "react";
-
-const LoginClient = dynamic(() => import("../components/LoginClient"), { ssr: false });
 
 export default function LoginPage() {
   return (
