@@ -21,7 +21,7 @@ export async function POST(req: Request) {
         return new Response("Não autorizado", { status: 401 });
     }
 
-    const customerIdTemp = "cus_SDM7GkOu7YC6gI";
+    //const customerIdTemp = "cus_SDM7GkOu7YC6gI";
     const total = calculateOrderAmount(items);
 
     const orderData = {
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
             const updated_intent = await stripe.paymentIntents.update(payment_intent_id, {
                 amount: total,
             });
-            const [existing_order, updated_order] =  await Promise.all([
+            const [existing_order] =  await Promise.all([
                 prisma.order.findFirst({
                     where: { paymentIntentID: payment_intent_id },
                     include: { products: true },
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
 
         orderData.paymentIntentID = paymentIntent.id;
 
-        const newOrder = await prisma.order.create({
+        await prisma.order.create({
             data: orderData,
         });
 
