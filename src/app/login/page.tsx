@@ -1,11 +1,11 @@
+"use client";
+
+import { useSearchParams } from 'next/navigation';
 import { SignIn } from "@clerk/nextjs";
 
-interface LoginPageProps {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-export default function Login({ searchParams }: LoginPageProps) {
-  const redirectUrl = typeof searchParams?.redirectUrl === 'string' ? searchParams.redirectUrl : "/";
+export default function Login() {
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirectUrl") || "/";
 
   return (
     <section className="mt-14">
