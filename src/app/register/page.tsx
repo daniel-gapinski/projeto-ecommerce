@@ -1,19 +1,10 @@
-"use client";
+import RegisterClient from "../components/RegisterClient";
+import { Suspense } from "react";
 
-import { useSearchParams } from 'next/navigation';
-import { SignUp } from "@clerk/nextjs";
-
-export default function Register() {
-  const searchParams = useSearchParams();
-  const redirectUrl = searchParams.get("redirectUrl") || "/";
-
+export default function RegisterPage() {
   return (
-    <section className="mt-14">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-center">
-          <SignUp signInUrl="/register" forceRedirectUrl={redirectUrl} />
-        </div>
-      </div>
-    </section>
+    <Suspense fallback={<div>Carregando register...</div>}>
+      <RegisterClient />
+    </Suspense>
   );
 }
