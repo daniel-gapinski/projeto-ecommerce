@@ -47,6 +47,7 @@ export async function POST(req: Request) {
             const updated_intent = await stripe.paymentIntents.update(payment_intent_id, {
                 amount: total,
             });
+            //updated_order
             const [existing_order] =  await Promise.all([
                 prisma.order.findFirst({
                     where: { paymentIntentID: payment_intent_id },
@@ -83,6 +84,11 @@ export async function POST(req: Request) {
 
         orderData.paymentIntentID = paymentIntent.id;
 
+        /**
+         *  const newOrder = await prisma.order.create({
+            data: orderData,
+        });
+         */
         await prisma.order.create({
             data: orderData,
         });

@@ -69,7 +69,14 @@ async function handler(request: Request) {
             apiVersion: "2022-11-15" as any,
         });
 
-        const customer = await stripe.customers.create({
+        /**
+         *  const customer = await stripe.customers.create({
+            name: `${first_name} ${last_name}`,
+            email: email_addresses ? email_addresses[0].email_address : '',
+        });
+         */
+
+        await stripe.customers.create({
             name: `${first_name} ${last_name}`,
             email: email_addresses ? email_addresses[0].email_address : '',
         });
