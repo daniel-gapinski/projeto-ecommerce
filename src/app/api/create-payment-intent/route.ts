@@ -96,7 +96,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ paymentIntent }, { status: 200 });
     }
 
-    //console.log(" userID: ", userId)
-    //console.log("Items recebidos:", items);
-    //console.log("paymentIntent ID recebido:", payment_intent_id);
+    console.log(" userID: ", userId)
+    console.log("Items recebidos:", items);
+    console.log("paymentIntent ID recebido:", payment_intent_id);
 }

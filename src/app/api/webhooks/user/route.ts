@@ -20,7 +20,7 @@ type EventDataType = {
     first_name: string;
     last_name: string;
     email_addresses: EmailAddressType[];
-    primary_email_address_id: string;
+    //primary_email_address_id: string;
     attributes: Record<string, string | number>;
 };
 
@@ -60,14 +60,12 @@ async function handler(request: Request) {
             first_name,
             last_name,
             email_addresses,
-            primary_email_address_id,
+            //primary_email_address_id,
             ...attributes
         } = evt.data;
 
         //Inserir usuário no stripe
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-            apiVersion: "2022-11-15" as any,
-        });
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
         /**
          *  const customer = await stripe.customers.create({
